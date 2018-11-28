@@ -38,7 +38,7 @@ True
 True
 
 # store the bf into a file.
->>> bf.to_pack('filename.suffix')
+>>> bf.tofile('filename.suffix')
 
 # recover a bf from a file.Auto recognize which kind of filters it is.
 >>> recovered_bf = bloompy.get_filter_fromfile('filename.suffix')
