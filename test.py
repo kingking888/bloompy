@@ -2,7 +2,7 @@
 import unittest
 import bitarray
 
-from bloompy3 import BloomFilter,\
+from bloompy import BloomFilter,\
     CountingBloomFilter,ScalableBloomFilter,\
     SCBloomFilter,get_filter_fromfile
 
