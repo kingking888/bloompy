@@ -185,11 +185,11 @@ False
 ```
 ## Store and recover
 
-As shown in the standard bloom filter.You can store a filter by 2 ways:
+As shown in the standard bloom filter.You can store a filter in 2 ways:
 - classmethod 'fromfile'
 - get_filter_fromfile() 
 
-> if you are clearly know that there is a BloomFilter stored in a file.
+> if you clearly know that there is a BloomFilter stored in a file.
 > you can recover it with:
 > 
 > ``` bloompy.BloomeFilter.fromfile('filename.suffix) ```
