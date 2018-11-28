@@ -1,16 +1,17 @@
-# bloompy
+# [bloompy](https://pypi.org/project/bloompy/)
+
 An implementation of 4 kinds of Bloom Filter in Python3.
 > bloompy includes the standard BloomFilter,CountingBloomFilter,ScalableBloomFilter,ScalableCountingBloomFilter.
 > It's Update from pybloom.
 
-## Install 
+## Installation
 
 > pip install bloompy
 
 ## Use
 
 There's 4 kinds of BloomFilter you can use by bloompy.
-* standard bloom filter
+* **standard bloom filter**
 
 the standard one can only query or add elements in it. 
 ```python
@@ -73,7 +74,7 @@ bitarray('00....')
 10
 
 ```
-* counting bloom filter
+* **counting bloom filter**
 
 The counting bloom filter is a subclass of the standard bloom filter.But it supports the **delete** operation.
 It is set inside that 4bits represent a **bit** of the standard bf. So it costs more momery than the standard bf,
@@ -109,7 +110,7 @@ False
 You can do any operations of the BloomFilter on it as well. 
 
 
-* scalable bloom filter
+* **scalable bloom filter**
 
 Auto increase the capacity of the filter if the current amount of inserted elements is up to the limits.
 It's set 2times the pre capacity inside by default.
@@ -151,7 +152,7 @@ True
 ```
 You can do any operations of the BloomFilter on it as well. 
 
-* scalable counting bloom filter
+* **scalable counting bloom filter**
 
 It's a subclass of the ScalableBloomFilter.But it supports the **delete** operation.
 You can do any operations of the ScalableBloomFilter on it as well. 
@@ -189,7 +190,7 @@ As shown in the standard bloom filter.You can store a filter in 2 ways:
 - classmethod 'fromfile'
 - get_filter_fromfile() 
 
-> if you clearly know that there is a BloomFilter stored in a file.
+> if you do clearly know that there is a BloomFilter stored in a file.
 > you can recover it with:
 > 
 > ``` bloompy.BloomeFilter.fromfile('filename.suffix) ```
