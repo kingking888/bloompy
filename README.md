@@ -1,21 +1,21 @@
-# bloompy3
+# bloompy
 An implementation of 4 kinds of Bloom Filter in Python3.
-> bloompy3 includes the standard BloomFilter,CountingBloomFilter,ScalableBloomFilter,ScalableCountingBloomFilter.
+> bloompy includes the standard BloomFilter,CountingBloomFilter,ScalableBloomFilter,ScalableCountingBloomFilter.
 > It's Update from pybloom.
 
 ## Install 
 
-> pip install bloompy3
+> pip install bloompy
 
 ## Use
 
-There's 4 kinds of BloomFilter you can use by bloompy3.
+There's 4 kinds of BloomFilter you can use by bloompy.
 * standard bloom filter
 
 the standard one can only query or add elements in it. 
 ```python
->>> import bloompy3
->>> bf = bloompy3.BloomFilter(error_rate=0.001,element_num=10**3)
+>>> import bloompy
+>>> bf = bloompy.BloomFilter(error_rate=0.001,element_num=10**3)
 
 # query the status of the element inside the bf immediately 
 # and add it into the bf.False returned indicates the element
@@ -41,11 +41,11 @@ True
 >>> bf.to_pack('filename.suffix')
 
 # recover a bf from a file.Auto recognize which kind of filters it is.
->>> recovered_bf = bloompy3.get_filter_fromfile('filename.suffix')
+>>> recovered_bf = bloompy.get_filter_fromfile('filename.suffix')
 
 # or you can use a classmethod 'fromfile' of the BloomFilter Class to get
 # a BloomFilter instance from a file.Same as other kind of filter Classes .
->>> recovered_bf = bloompy3.BloomFilter.fromfile('filename.suffix')
+>>> recovered_bf = bloompy.BloomFilter.fromfile('filename.suffix')
 
 # return the total number of the elements inside the bf.
 >>> bf.count
@@ -79,8 +79,8 @@ The counting bloom filter is a subclass of the standard bloom filter.But it supp
 It is set inside that 4bits represent a **bit** of the standard bf. So it costs more momery than the standard bf,
 it's 4 times the standard one.
 ```python
->>> import  bloompy3
->>> cbf  = bloompy3.CountingBloomFilter(error_rate=0.001,element_num=10**3)
+>>> import  bloompy
+>>> cbf  = bloompy.CountingBloomFilter(error_rate=0.001,element_num=10**3)
 
 # same as the standard bf at add operation.
 >>> cbf.add(12)
@@ -104,7 +104,7 @@ False
 0
 
 # recover a cbf from a file.Same as the bf.
->>> recovered_cbf = bloompy3.CountingBloomFilter.fromfile('filename.suffix')
+>>> recovered_cbf = bloompy.CountingBloomFilter.fromfile('filename.suffix')
 ```
 You can do any operations of the BloomFilter on it as well. 
 
@@ -114,8 +114,8 @@ You can do any operations of the BloomFilter on it as well.
 Auto increase the capacity of the filter if the current amount of inserted elements is up to the limits.
 It's set 2times the pre capacity inside by default.
 ```python
->>> import bloompy3
->>> sbf = bloompy3.ScalableBloomFilter(error_rate=0.001,initial_capacity=10**3)
+>>> import bloompy
+>>> sbf = bloompy.ScalableBloomFilter(error_rate=0.001,initial_capacity=10**3)
 
 # at first, the sbf is at 1000 capacity limits.
 >>> len(sbf)
@@ -129,7 +129,7 @@ True
 >>> len(sbf)
 1
 >>> sbf.filters
-[<bloompy3.BloomFilter object at 0x000000000B6F5860>]
+[<bloompy.BloomFilter object at 0x000000000B6F5860>]
 >>> sbf.capacity
 1000
 
@@ -142,12 +142,12 @@ True
 >>> len(sbf)
 2
 >>> sbf.filters
-[<bloompy3.BloomFilter object at 0x000000000B6F5860>, <bloompy3.BloomFilter object at 0x000000000B32F748>]
+[<bloompy.BloomFilter object at 0x000000000B6F5860>, <bloompy.BloomFilter object at 0x000000000B32F748>]
 >>> sbf.capacity
 3000
 
 # recover a sbf from a file.Same as bf.
->>> recovered_sbf = bloompy3.ScalableBloomFilter.fromfile('filename.suffix')
+>>> recovered_sbf = bloompy.ScalableBloomFilter.fromfile('filename.suffix')
 ```
 You can do any operations of the BloomFilter on it as well. 
 
@@ -156,8 +156,8 @@ You can do any operations of the BloomFilter on it as well.
 It's a subclass of the ScalableBloomFilter.But it supports the **delete** operation.
 You can do any operations of the ScalableBloomFilter on it as well. 
 ```python
->>> import bloompy3
->>> scbf = bloompy3.SCBloomFilter(error_rate=0.001,initial_capacity=10**3)
+>>> import bloompy
+>>> scbf = bloompy.SCBloomFilter(error_rate=0.001,initial_capacity=10**3)
 
 >>> scbf.add(1)
 False
@@ -170,7 +170,7 @@ False
 >>> len(scbf)
 1
 >>> scbf.filters
-[<bloompy3.CountingBloomFilter object at 0x000000000B6F5828>]
+[<bloompy.CountingBloomFilter object at 0x000000000B6F5828>]
 
 # add elements in sbf to make it at a capacity limits
 >>> for i in range(1100):
@@ -178,10 +178,10 @@ False
 >>> len(scbf)
 2
 >>> scbf.filters
-[<bloompy3.CountingBloomFilter object at 0x000000000B6F5828>, <bloompy3.CountingBloomFilter object at 0x000000000B6F5898>]
+[<bloompy.CountingBloomFilter object at 0x000000000B6F5828>, <bloompy.CountingBloomFilter object at 0x000000000B6F5898>]
 
 # recover a scbf from a file.Same as bf.
->>> recovered_scbf = bloompy3.SCBloomFilter.fromfile('filename.suffix')
+>>> recovered_scbf = bloompy.SCBloomFilter.fromfile('filename.suffix')
 ```
 ## Store and recover
 
@@ -192,16 +192,16 @@ As shown in the standard bloom filter.You can store a filter by 2 ways:
 > if you are clearly know that there is a BloomFilter stored in a file.
 > you can recover it with:
 > 
-> ``` bloompy3.BloomeFilter.fromfile('filename.suffix) ```
+> ``` bloompy.BloomeFilter.fromfile('filename.suffix) ```
 > 
 > or it's a CountingBloomFilter inside it:
 > 
-> ```bloompy3.CountingBloomFilter.fromfile('filename.suffix)```
+> ```bloompy.CountingBloomFilter.fromfile('filename.suffix)```
 >
 > Same as others. 
 > 
 > But if you don't know what kind of filter it is stored in the file.Use:
 > 
-> ```bloompy3.get_filter_fromfile('filename.suffix') ```
+> ```bloompy.get_filter_fromfile('filename.suffix') ```
 > 
 > It will auto recognize the filter stored inside a file.Then you can do something with it.
