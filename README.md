@@ -1,6 +1,6 @@
 # [bloompy](https://pypi.org/project/bloompy/)
 
-An implementation of 4 kinds of Bloom Filter in Python3.
+An implementation of 4 kinds of Bloom Filter in Python3.[中文](https://github.com/01ly/bloompy/blob/master/zh-cn.md)
 > bloompy includes the standard BloomFilter,CountingBloomFilter,ScalableBloomFilter,ScalableCountingBloomFilter.
 > It's Update from pybloom.
 
