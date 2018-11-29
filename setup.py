@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bloompy",
-    version="0.0.1",
+    version="0.1.0",
     author="linkin",
     author_email="yooleak@outlook.com",
     description="Implementation of Bloom Filter.",
@@ -20,5 +20,6 @@ setuptools.setup(
     ],
     install_requires=[
         "bitarray >= 0.8.3",
+        'mmh3 >= 2.5.1',
     ],
 )

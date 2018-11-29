@@ -8,6 +8,10 @@ from cmath import log
 from bitarray import bitarray
 from struct import unpack, pack
 
+
+name = 'bloompy'
+__all__ = ['BloomFilter','CountingBloomFilter','ScalableBloomFilter','SCBloomFilter','get_filter_fromfile']
+
 IN_SEP = b'&&&&'
 OUT_SEP = b'####'
 FMT = '4sfiii'
@@ -208,6 +212,8 @@ class CountingBloomFilter(BloomFilter):
 		'''
 		if self.count >= self.capacity:
 			raise IndexError('BloomFilter is at capacity.')
+		if element in self:
+			return True
 		_element = self._to_str(element)
 		i = 0
 		for _ in range(self.hash_num):
@@ -234,6 +240,7 @@ class CountingBloomFilter(BloomFilter):
 										 self.seeds[_]) % self.bit_num
 				raw_value = self._get_bit_value(hashed_value)
 				self._set_bit_value(hashed_value, raw_value - 1)
+			self.count-=1
 			return True
 		return False
 
@@ -242,7 +249,7 @@ class CountingBloomFilter(BloomFilter):
 		for _ in range(self.hash_num):
 			hashed_value = mmh3.hash(_element,
 									 self.seeds[_])%self.bit_num
-			if self._get_bit_value(hashed_value) == 0:
+			if self._get_bit_value(hashed_value) <= 0:
 				return False
 		return True
 
