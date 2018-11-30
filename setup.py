@@ -1,3 +1,4 @@
+#coding:utf-8
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -5,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bloompy",
-    version="0.1.0",
+    version="0.1.1",
     author="linkin",
     author_email="yooleak@outlook.com",
     description="Implementation of Bloom Filter.",
