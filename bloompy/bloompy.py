@@ -433,15 +433,18 @@ class SCBloomFilter(ScalableBloomFilter):
 			self.filters.append(filter)
 			filter.add(key)
 		else:
-			filter = self.filters[-1]
-			try:
-				filter.add(key)
-			except IndexError:
-				filter = CountingBloomFilter(
-					element_num=filter.capacity * self.scale,
-					error_rate=filter.error_rate * self.ratio)
-				self.filters.append(filter)
-				filter.add(key)
+			for _,filter in enumerate(self.filters):
+				try:
+					filter.add(key)
+				except IndexError:
+					if _+1 == len(self.filters):
+						filter = CountingBloomFilter(
+							element_num=filter.capacity * self.scale,
+							error_rate=filter.error_rate * self.ratio)
+						self.filters.append(filter)
+						filter.add(key)
+					else:
+						continue
 		return False
 
 	def delete(self,key):
