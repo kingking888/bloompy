@@ -8,7 +8,7 @@ An implementation of 4 kinds of Bloom Filter in Python3.[中文](https://github.
 
 > pip install bloompy
 
-##  Use
+##  Usage
 
 There's 4 kinds of BloomFilter you can use by bloompy.
 * **standard bloom filter**
@@ -193,11 +193,11 @@ As shown in the standard bloom filter.You can store a filter in 2 ways:
 > if you do clearly know that there is a BloomFilter stored in a file.
 > you can recover it with:
 > 
-> ``` bloompy.BloomeFilter.fromfile('filename.suffix) ```
+> ``` bloompy.BloomeFilter.fromfile('filename.suffix') ```
 > 
 > or it's a CountingBloomFilter inside it:
 > 
-> ```bloompy.CountingBloomFilter.fromfile('filename.suffix)```
+> ```bloompy.CountingBloomFilter.fromfile('filename.suffix')```
 >
 > Same as others. 
 > 
